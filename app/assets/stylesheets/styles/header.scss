@@ -1,0 +1,31 @@
+.body--header {
+    @include flexbox();
+    @include flexbox-align-items(center);
+    @include flexbox-justify-content(space-between);
+    padding: 2rem;
+    background-color: $siteBlue;
+}
+
+.header--title h1 {
+    font-family: 'Selfie';
+    margin: 0;
+    color: $white;
+}
+
+.header--sessions {
+    margin-left: 3rem;
+    width: 50%;
+    @include flexbox();
+    @include flexbox-align-items(center);
+}
+
+.header--sessions a {
+    padding: 1rem 1.5rem;
+    display: inline-block;
+    color: white;
+    background-color: $siteBlack;
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+    margin-right: 5%;
+}
