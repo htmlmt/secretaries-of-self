@@ -1,0 +1,21 @@
+<%= form_for(@presidency) do |f| %>
+  <% if @presidency.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@presidency.errors.count, "error") %> prohibited this presidency from being saved:</h2>
+
+      <ul>
+      <% @presidency.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cabinet_id %><br>
+    <%= f.number_field :cabinet_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -4,7 +4,10 @@ class CabinetsController < ApplicationController
   # GET /cabinets
   # GET /cabinets.json
   def index
-    @cabinets = Cabinet.all
+    if current_user
+      @cabinets = Cabinet.where(user_id: current_user.id)
+      @cabinet = current_user.presidency.cabinet
+    end
   end
 
   # GET /cabinets/1

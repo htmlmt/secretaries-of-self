@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Presidencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cabinet</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presidencies.each do |presidency| %>
+      <tr>
+        <td><%= presidency.cabinet_id %></td>
+        <td><%= link_to 'Show', presidency %></td>
+        <td><%= link_to 'Edit', edit_presidency_path(presidency) %></td>
+        <td><%= link_to 'Destroy', presidency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Presidency', new_presidency_path %>

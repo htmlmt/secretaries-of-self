@@ -17,8 +17,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       if @user.save
         sign_in @user
-        @cabinet = Cabinet.new(user_id: @user.id)
+        @cabinet = Cabinet.new()
         @cabinet.save
+        @presidency = Presidency.new(cabinet_id: @cabinet.id)
+        @presidency.save
+        @user.update(presidency_id: @presidency.id)
         
         format.html { redirect_to :root, notice: 'Your account was created.' }
         format.json { render :show, status: :created, location: @user }
@@ -31,6 +34,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def update
     
+  end
+  
+  def secretary
+    user = User.find_by_email(params[:email])
+    if user != nil
+      
+    else
+      @user = User.create(user_params)
+      current_user.presidency.cabinet.users << @user
+    end
   end
   
   def destroy
@@ -49,6 +62,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :presidency_id)
     end
 end

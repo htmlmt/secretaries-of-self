@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  resources :presidencies
   root "cabinets#index"
   resources :comments
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   resources :cabinets
   resources :questions
   resources :answers
+  
+  devise_scope :user do
+    post 'users/secretary' => 'users/registrations#secretary', as: :create_secretary
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
