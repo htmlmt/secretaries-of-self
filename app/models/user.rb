@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  belongs_to :cabinet
-  belongs_to :presidency
+  has_many :cabinets, through: :roles
+  has_many :roles
   has_many :questions
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

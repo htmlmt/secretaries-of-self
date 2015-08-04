@@ -5,10 +5,12 @@
         </div>
         <div class="cabinets--mine">
             <div class="mine--list">
-                <div class="list--president">
-                    <h3>President:</h3> 
-                    <h2><%= current_user.first_name %> <%= current_user.last_name %></h3>
-                </div>
+                <% @roles.each do |role| %>
+                    <div class="list--role">
+                        <h3><%= role.role.upcase %>:</h3> 
+                        <h2><%= role.user.first_name %> <%= role.user.last_name %></h3>
+                    </div>
+                <% end %>
             </div>
             <div class="mine--add">
                 <% if @cabinet == true %>
@@ -35,7 +37,7 @@
                                     </div>
                                     <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
                                         <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'work' %>
+                                        <%= hidden_field_tag 'secretary', 'Secretary of Work' %>
                                         <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
                                         <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
                                         <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
@@ -53,7 +55,7 @@
                                     </div>
                                     <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
                                         <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'work' %>
+                                        <%= hidden_field_tag 'secretary', 'Secretary of Love' %>
                                         <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
                                         <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
                                         <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
@@ -71,7 +73,7 @@
                                     </div>
                                     <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
                                         <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'work' %>
+                                        <%= hidden_field_tag 'secretary', 'Secretary of Faith' %>
                                         <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
                                         <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
                                         <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
@@ -89,7 +91,7 @@
                                     </div>
                                     <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
                                         <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'work' %>
+                                        <%= hidden_field_tag 'secretary', 'Secretary of Good' %>
                                         <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
                                         <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
                                         <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
@@ -107,7 +109,7 @@
                                     </div>
                                     <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
                                         <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'work' %>
+                                        <%= hidden_field_tag 'secretary', 'Secretary of Money' %>
                                         <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
                                         <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
                                         <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
@@ -144,19 +146,6 @@
                     </div>
                 <% end %>
             </div>
-            <% if @cabinets.count != 0 %>
-                <% @cabinets.each do |cabinet| %>
-                    <div class="cabinets--theirs">
-                        <% cabinet.users.each do |user| %>
-                        <div class="theirs--cabinet">
-                            <div class="cabinet--secretary">
-                                <%= user.first_name %> <%= user.last_name %>
-                            </div>
-                        </div>
-                        <% end %>
-                    </div>
-                <% end %>
-            <% end %>
         <% else %>
   
         <% end %>

@@ -14,7 +14,6 @@
     </div>
     <div class="header--sessions">
       <% if current_user != nil %>
-        <% @cabinet = current_user.presidency %>
         <%= link_to 'Edit cabinet', edit_cabinet_path(@cabinet.id) %> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
       <% else %>
         <%= link_to "Sign up", new_registration_path(User) %> <%= link_to "Login", new_session_path(User) %>

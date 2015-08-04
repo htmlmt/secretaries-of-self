@@ -5,8 +5,18 @@ class CabinetsController < ApplicationController
   # GET /cabinets.json
   def index
     if current_user
-      @cabinets = Cabinet.where(user_id: current_user.id)
-      @cabinet = current_user.presidency.cabinet
+      cabinets = current_user.cabinets
+      @cabinets = []
+      cabinets.each do |cabinet|
+        cabinet.roles.each do |role|
+          if role.role == "President"
+            @cabinet = cabinet
+          else
+            @cabinets << cabinet
+          end
+        end
+      end
+      @roles = @cabinet.roles
     end
   end
 

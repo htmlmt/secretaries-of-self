@@ -19,9 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_in @user
         @cabinet = Cabinet.new()
         @cabinet.save
-        @presidency = Presidency.new(cabinet_id: @cabinet.id)
-        @presidency.save
-        @user.update(presidency_id: @presidency.id)
+        @role = Role.create(user_id: current_user.id, cabinet_id: @cabinet.id, role: "President")
         
         format.html { redirect_to :root, notice: 'Your account was created.' }
         format.json { render :show, status: :created, location: @user }
@@ -42,7 +40,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       
     else
       @user = User.create(user_params)
-      current_user.presidency.cabinet.users << @user
+      cabinets = current_user.cabinets
+      cabinets.each do |cabinet|
+        cabinet.roles.each do |role|
+          if role.role == "President"
+            @cabinet = cabinet
+          end
+        end
+      end
+      Role.create(role: params[:secretary], user_id: @user.id, cabinet_id: @cabinet.id)
     end
   end
   
