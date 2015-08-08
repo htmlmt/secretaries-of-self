@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
   
   def show
   end
@@ -37,7 +38,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def secretary
     user = User.find_by_email(params[:email])
     if user != nil
-      
+      respond_to do |format| 
+        format.html { redirect_to :root }
+        format.js { render 'secretary.js.erb' }
+      end
     else
       @user = User.create(user_params)
       cabinets = current_user.cabinets
@@ -49,6 +53,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
       Role.create(role: params[:secretary], user_id: @user.id, cabinet_id: @cabinet.id)
+      respond_to do |format| 
+        format.html { redirect_to :root }
+        format.js { render 'secretary.js.erb' }
+      end
     end
   end
   

@@ -13,144 +13,29 @@
                 <% end %>
             </div>
             <div class="mine--add">
-                <% if @cabinet == true %>
-                    <% @cabinet.users.each do |user| %>
-                        <div class="mine--add">
-                            <input type="text">
-                        </div>
-                    <% end %>
-                <% else %>
-                    <div class="mine--secretary">
+                <div class="mine--secretary">
+                    <% if @secretaries.count != 0 %>
                         <div class="secretary--prompt">
                             Add a secretary to your cabinet:
                         </div>
-                        <div class="secretary--pick">
-                            <ul class="pick--list">
-                                <li class="list--item">
-                                    <div class="item--select">
-                                        <div class="select--text" data-secretary="work">
-                                            <h4 class="text--heading">Secretary of Work</h4>
-                                        </div>
-                                        <div class="select--plus">
-                                            +
-                                        </div>
-                                    </div>
-                                    <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
-                                        <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'Secretary of Work' %>
-                                        <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
-                                        <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
-                                        <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
-                                        <%= submit_tag "Add secretary", class: "item--submit" %>
-                                    <% end %>
-                                </li>
-                                <li class="list--item">
-                                    <div class="item--select">
-                                        <div class="select--text">
-                                            <h4 class="text--heading">Secretary of Love</h4>
-                                        </div>
-                                        <div class="select--plus">
-                                            +
-                                        </div>
-                                    </div>
-                                    <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
-                                        <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'Secretary of Love' %>
-                                        <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
-                                        <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
-                                        <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
-                                        <%= submit_tag "Add secretary", class: "item--submit" %>
-                                    <% end %>
-                                </li>
-                                <li class="list--item">
-                                    <div class="item--select">
-                                        <div class="select--text">
-                                            <h4 class="text--heading">Secretary of Faith</h4>
-                                        </div>
-                                        <div class="select--plus">
-                                            +
-                                        </div>
-                                    </div>
-                                    <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
-                                        <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'Secretary of Faith' %>
-                                        <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
-                                        <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
-                                        <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
-                                        <%= submit_tag "Add secretary", class: "item--submit" %>
-                                    <% end %>
-                                </li>
-                                <li class="list--item">
-                                    <div class="item--select">
-                                        <div class="select--text">
-                                            <h4 class="text--heading">Secretary of Good</h4>
-                                        </div>
-                                        <div class="select--plus">
-                                            +
-                                        </div>
-                                    </div>
-                                    <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
-                                        <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'Secretary of Good' %>
-                                        <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
-                                        <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
-                                        <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
-                                        <%= submit_tag "Add secretary", class: "item--submit" %>
-                                    <% end %>
-                                </li>
-                                <li class="list--item">
-                                    <div class="item--select">
-                                        <div class="select--text">
-                                            <h4 class="text--heading">Secretary of Money</h4>
-                                        </div>
-                                        <div class="select--plus">
-                                            +
-                                        </div>
-                                    </div>
-                                    <%= form_tag "/users/secretary", remote: true, class: "secretary-form" do %>
-                                        <%= hidden_field_tag 'cabinet', @cabinet.id %>
-                                        <%= hidden_field_tag 'secretary', 'Secretary of Money' %>
-                                        <%= text_field_tag "user[first_name]", nil, class: "item--input", placeholder: "Secretary's first name" %>
-                                        <%= text_field_tag "user[last_name]", nil, class: "item--input", placeholder: "Secretary's last name" %>
-                                        <%= text_field_tag "user[email]", nil, class: "item--input", placeholder: "Secretary's email" %>
-                                        <%= submit_tag "Add secretary", class: "item--submit" %>
-                                    <% end %>
-                                </li>
-                            </ul>
-                            <div class="pick--new">
-                                <div class="new--secretary">
-                                    <div class="secretary--text">
-                                        Add your own kind of secretary:
-                                    </div>
-                                    <div class="secretary--input">
-                                        <label>
-                                            Secretary of
-                                        </label>
-                                        <input class="input--secretary" type="text" name="secretary">
-                                    </div>
-                                    <div class="secretary--input">
-                                        <input class="input--first-name" type="text" placeholder="Secretary's first name">
-                                    </div>
-                                    <div class="secretary--input">
-                                        <input class="input--last-name" type="text" placeholder="Secretary's last name">
-                                    </div>
-                                    <div class="secretary--input">
-                                        <input class="input--email" type="text" placeholder="Secretary's email address">
-                                    </div>
-                                    <div class="secretary--submit">
-                                        Add secretary
-                                    </div>
-                                </div>
-                            </div>
+                    <% end %>
+                    <div class="secretary--pick">
+                        <ul class="pick--list">
+                            <% @secretaries.each do |secretary| %>
+                                <%= render partial: 'secretary', locals: {secretary: secretary, cabinet: @cabinet} %>
+                            <% end %>
+                        </ul>
+                        <div class="pick--submit">
+                            Confirm cabinet
                         </div>
                     </div>
-                <% end %>
+                </div>
             </div>
         <% else %>
   
         <% end %>
 </div>
-    <script>
+<script>
 
     $('.item--select').click(function(){
         if ($(this).siblings('.secretary-form').hasClass('open')) {
@@ -162,41 +47,8 @@
         }
     });
     
-    // var secretaryToggles = $('.item--select');
-    // secretaryToggles.click(function(){
-    //     if ($(this).hasClass('open')) {
-    //         $(this).siblings('.item--input').hide();
-    //         $(this).siblings('.item--submit').hide();
-    //         $(this).parent().css('cursor', 'pointer');
-    //         $(this).children('.select--plus').css('transform', 'rotate(0deg)');
-    //         $(this).removeClass('open');
-    //     } else {
-    //         var secretary = $(this).children('.select--text').children('.text--heading').data('secretary');
-    //         $(this).parent().children($('.item--input')).hide();
-    //         $(this).children('.select--plus').css('transform', 'rotate(45deg)');
-    //         $(this).addClass('open');
-    //         $('.item--submit').click(function(){
-    //             $.ajax({
-    //                 type: "POST",
-    //                 url: "/cabinets",
-    //                 data: { id: {}}
-    //             })
-    //             var secretaryName = $(this).siblings('.item--first-name').val() + ' ' + $(this).siblings('.item--last-name').val();
-    //             var secretary = $(this).siblings('.item--select').children('.select--text').children('.text--heading').html();
-    //             $('.mine--list').append('<div class="list--secretary"><h3>' + secretary + ':</h3><h2>' + secretaryName + '</h2></div>');
-    //             $(this).parent().hide();
-    //         });
-    //     }
-    // });
-    //
-    // $('.secretary--submit').click(function(){
-    //     var secretary = $(".secretary--input .input--secretary").first().val();
-    //     var firstName = $(".secretary--input .input--first-name").first().val();
-    //     var lastName = $(".secretary--input .input--last-name").first().val();
-    //     $(".secretary--input .input--secretary").first().val("");
-    //     $(".secretary--input .input--first-name").first().val("");
-    //     $(".secretary--input .input--last-name").first().val("");
-    //     $(".secretary--input .input--email").first().val("");
-    //     $('.mine--list').append('<div class="list--secretary"><h3>Secretary of ' + secretary + ':</h3><h2>' + firstName + ' ' + lastName + '</h2></div>');
-    // });
-    </script>
+    $('.item--submit').click(function(){
+        $(this).parent().parent().remove();
+    });
+    
+</script>

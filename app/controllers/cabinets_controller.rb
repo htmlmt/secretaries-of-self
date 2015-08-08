@@ -17,6 +17,14 @@ class CabinetsController < ApplicationController
         end
       end
       @roles = @cabinet.roles
+      @secretaries = ['Secretary of Work', 'Secretary of Love', 'Secretary of Faith', 'Secretary of Good']
+      @roles.each do |role|
+        @secretaries.each do |secretary|
+          if role.role.downcase == secretary.downcase
+            @secretaries.delete(secretary)
+          end
+        end
+      end
     end
   end
 
